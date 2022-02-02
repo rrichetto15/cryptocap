@@ -1,14 +1,31 @@
 import styled from 'styled-components';
+import { useTheme } from '../hooks/useTheme';
 
 import Container from './Container';
 
+import { BsSun, BsMoonFill } from 'react-icons/bs';
+
 const Header = () => {
+  const { theme, switchTheme } = useTheme();
+
   return (
     <header>
       <Container>
         <Content>
           <h1>CryptoCap</h1>
-          <button>Light Mode</button>
+          <button onClick={switchTheme}>
+            {theme === 'light-theme' ? (
+              <>
+                <BsMoonFill />
+                Dark Mode
+              </>
+            ) : (
+              <>
+                <BsSun />
+                Light Mode
+              </>
+            )}
+          </button>
         </Content>
       </Container>
     </header>

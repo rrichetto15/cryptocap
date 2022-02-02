@@ -4,7 +4,14 @@
   --bg-color: #1f2028;
   --card-bg-color: #2e3039;
   --input-outline-color: #444650;
-  /* --input-outline-color: #696c79; */
+}
+
+.light-theme {
+  --text-color: #1f2028;
+  --text-color-2: #a9adc1;
+  --bg-color: #fff;
+  --card-bg-color: #f9f9f9;
+  --input-outline-color: #444650;
 }
 
 *,
