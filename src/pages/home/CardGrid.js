@@ -16,7 +16,7 @@ const CardGrid = () => {
 
       try {
         const { data } = await axios.get(
-          `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=26&tsym=USD&api_key=${process.env.REACT_APP_API_KEY}`
+          `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=51&tsym=USD&api_key=${process.env.REACT_APP_API_KEY}`
         );
 
         // Only use coins that have DISPLAY object (which holds USD price)

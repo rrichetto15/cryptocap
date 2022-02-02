@@ -5,6 +5,7 @@ const Card = ({ coin }) => {
 
   return (
     <Wrap>
+      <span className="arrow">&rarr;</span>
       <span className="ticker">{coin.CoinInfo.Name}</span>
       <h2 className="name">{coin.CoinInfo.FullName}</h2>
       <span className="price">{coin.DISPLAY.USD.PRICE}</span>
@@ -20,6 +21,7 @@ const Card = ({ coin }) => {
 };
 
 const Wrap = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,10 +29,25 @@ const Wrap = styled.div`
   padding: 3rem 2rem;
   background: #2e3039;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(75, 75, 75, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    backface-visibility: hidden;
+  }
 
   span {
     display: block;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #a9adc1;
   }
 
   .ticker {
