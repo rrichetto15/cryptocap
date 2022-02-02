@@ -27,7 +27,7 @@ const Wrap = styled.div`
   align-items: center;
   text-align: center;
   padding: 3rem 2rem;
-  background: #2e3039;
+  background: var(--card-bg-color);
   border-radius: 4px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.2s;
@@ -47,11 +47,11 @@ const Wrap = styled.div`
     position: absolute;
     top: 1rem;
     right: 1.5rem;
-    color: #a9adc1;
+    color: var(--text-color-2);
   }
 
   .ticker {
-    color: #a9adc1;
+    color: var(--text-color-2);
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
@@ -67,7 +67,7 @@ const Wrap = styled.div`
 
   h3 {
     font-size: 1.6rem;
-    color: #a9adc1;
+    color: var(--text-color-2);
     font-weight: 600;
     margin-bottom: 0.5rem;
   }

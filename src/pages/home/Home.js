@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Container from '../../components/Container';
-// import FilterBar from './FilterBar';
+import FilterBar from './FilterBar';
 import CardGrid from './CardGrid';
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
     <Wrap>
       <Container>
         <Flex>
-          {/* <FilterBar /> */}
+          <FilterBar />
           <CardGrid />
         </Flex>
       </Container>
