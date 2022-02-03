@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import slugify from 'slugify';
 
 const Card = ({ coin }) => {
   const change = coin.DISPLAY.USD.CHANGEPCT24HOUR;
+  const slug = slugify(coin.CoinInfo.FullName, { lower: true });
 
   return (
-    <Wrap>
+    <WrapLink to={`/${slug}`}>
       <span className="arrow">&rarr;</span>
       <span className="ticker">{coin.CoinInfo.Name}</span>
       <h2 className="name">{coin.CoinInfo.FullName}</h2>
@@ -16,15 +19,16 @@ const Card = ({ coin }) => {
       />
       <h3>Market Cap:</h3>
       <p>{coin.DISPLAY.USD.MKTCAP}</p>
-    </Wrap>
+    </WrapLink>
   );
 };
 
-const Wrap = styled.div`
+const WrapLink = styled(Link)`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--text-color);
   text-align: center;
   padding: 3rem 2rem;
   background: var(--card-bg-color);
@@ -32,6 +36,7 @@ const Wrap = styled.div`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transition: all 0.2s;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
