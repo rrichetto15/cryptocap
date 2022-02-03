@@ -1,38 +1,13 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+
+import { useFetch } from '../../hooks/useFetch';
 
 import Card from './Card';
 
 const CardGrid = () => {
-  const [coinList, setCoinList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const fetchCoins = async () => {
-      setIsLoading(true);
-      setIsError(false);
-
-      try {
-        const { data } = await axios.get(
-          `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=51&tsym=USD&api_key=${process.env.REACT_APP_API_KEY}`
-        );
-
-        // Only use coins that have DISPLAY object (which holds USD price)
-        setCoinList(data.Data.filter((coin) => coin.DISPLAY || false));
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        setIsError(true);
-        console.log(error);
-      }
-    };
-
-    fetchCoins();
-  }, []);
-
-  console.log(coinList);
+  const { coinData, isLoading, isError } = useFetch(
+    '/top/mktcapfull?limit=51&tsym=USD'
+  );
 
   return (
     <Wrap>
@@ -44,7 +19,7 @@ const CardGrid = () => {
       )}
       {!isLoading &&
         !isError &&
-        coinList.map((coin) => <Card key={coin.CoinInfo.Id} coin={coin} />)}
+        coinData.map((coin) => <Card key={coin.CoinInfo.Id} coin={coin} />)}
     </Wrap>
   );
 };
