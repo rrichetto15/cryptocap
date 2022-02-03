@@ -8,10 +8,10 @@
 
 .light-theme {
   --text-color: #1f2028;
-  --text-color-2: #a9adc1;
-  --bg-color: #fff;
-  --card-bg-color: #f9f9f9;
-  --input-outline-color: #444650;
+  --text-color-2: #5d5f67;
+  --bg-color: #f9f9f9;
+  --card-bg-color: #fff;
+  --input-outline-color: #98999d;
 }
 
 *,
