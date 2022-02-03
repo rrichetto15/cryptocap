@@ -1,5 +1,9 @@
+import { useParams } from 'react-router-dom';
+
 const Details = () => {
-  return <div>This is a details page</div>;
+  const { symbol } = useParams();
+
+  return <div>Details for: {symbol}</div>;
 };
 
 export default Details;

@@ -14,7 +14,7 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:name" element={<Details />} />
+          <Route path="/coin/:symbol" element={<Details />} />
         </Routes>
       </main>
     </BrowserRouter>

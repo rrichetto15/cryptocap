@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import slugify from 'slugify';
 
 const Card = ({ coin }) => {
   const change = coin.DISPLAY.USD.CHANGEPCT24HOUR;
-  const slug = slugify(coin.CoinInfo.FullName, { lower: true });
 
   return (
-    <WrapLink to={`/${slug}`}>
+    <WrapLink to={`/coin/${coin.CoinInfo.Name}`}>
       <span className="arrow">&rarr;</span>
-      <span className="ticker">{coin.CoinInfo.Name}</span>
+      <span className="symbol">{coin.CoinInfo.Name}</span>
       <h2 className="name">{coin.CoinInfo.FullName}</h2>
       <span className="price">{coin.DISPLAY.USD.PRICE}</span>
       <PriceChange change={change}>{change}%</PriceChange>
@@ -55,7 +53,7 @@ const WrapLink = styled(Link)`
     color: var(--text-color-2);
   }
 
-  .ticker {
+  .symbol {
     color: var(--text-color-2);
     font-weight: 600;
     margin-bottom: 0.5rem;
