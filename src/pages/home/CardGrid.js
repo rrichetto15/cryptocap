@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
 import { useFetch } from '../../hooks/useFetch';
 
 import Card from './Card';
@@ -8,6 +8,14 @@ const CardGrid = () => {
   const { coinData, isLoading, isError } = useFetch(
     '/top/mktcapfull?limit=51&tsym=USD'
   );
+  const [validCoinData, setValidCoinData] = useState([]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      // Only use coins that have DISPLAY object (which holds USD price)
+      setValidCoinData(coinData.Data.filter((coin) => coin.DISPLAY || false));
+    }
+  }, [isLoading]);
 
   return (
     <Wrap>
@@ -19,7 +27,9 @@ const CardGrid = () => {
       )}
       {!isLoading &&
         !isError &&
-        coinData.map((coin) => <Card key={coin.CoinInfo.Id} coin={coin} />)}
+        validCoinData.map((coin) => (
+          <Card key={coin.CoinInfo.Id} coin={coin} />
+        ))}
     </Wrap>
   );
 };

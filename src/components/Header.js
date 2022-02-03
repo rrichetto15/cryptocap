@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTheme } from '../hooks/useTheme';
 
@@ -12,7 +13,9 @@ const Header = () => {
     <header>
       <Container>
         <Content>
-          <h1>CryptoCap</h1>
+          <Link to="/">
+            <h1>CryptoCap</h1>
+          </Link>
           <button onClick={switchTheme}>
             {theme === 'light-theme' ? (
               <>
@@ -37,6 +40,11 @@ const Content = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
 
   h1 {
     font-size: 2.4rem;

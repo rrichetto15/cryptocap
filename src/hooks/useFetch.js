@@ -5,7 +5,7 @@ const API_ENDPOINT = `https://min-api.cryptocompare.com/data`;
 const API_KEY = `&api_key=${process.env.REACT_APP_API_KEY}`;
 
 export const useFetch = (params = '') => {
-  const [coinData, setCoinData] = useState(null);
+  const [coinData, setCoinData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -17,8 +17,7 @@ export const useFetch = (params = '') => {
       try {
         const { data } = await axios.get(url);
 
-        // Only use coins that have DISPLAY object (which holds USD price)
-        setCoinData(data.Data.filter((coin) => coin.DISPLAY || false));
+        setCoinData(data);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
