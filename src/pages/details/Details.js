@@ -1,20 +1,39 @@
 import { Link, useParams } from 'react-router-dom';
+import { ImSpinner10 } from 'react-icons/im';
 import styled from 'styled-components';
 
 import { useFetch } from '../../hooks/useFetch';
 
 import Container from '../../components/Container';
+import Article from './Article';
 
 const Details = () => {
   const { symbol } = useParams();
   const { coinData, isLoading, isError } = useFetch(
     `/pricemultifull?fsyms=${symbol}&tsyms=USD`
   );
+  const {
+    coinData: newsArticles,
+    isLoading: isNewsLoading,
+    isError: isNewsError,
+  } = useFetch(`/v2/news/?categories=${symbol}`);
 
-  if (isLoading) {
+  if (isLoading || isNewsLoading) {
     return (
       <>
-        <Container>Loading...</Container>
+        <Container>
+          <ImSpinner10 className="spinner" />
+        </Container>
+      </>
+    );
+  }
+
+  if (isError || isNewsError) {
+    return (
+      <>
+        <Container>
+          <h2>Something went wrong, please try again soon.</h2>
+        </Container>
       </>
     );
   }
@@ -28,7 +47,7 @@ const Details = () => {
     CIRCULATINGSUPPLY,
   } = coinData.DISPLAY[symbol.toUpperCase()].USD;
 
-  console.log(coinData);
+  console.log(newsArticles);
 
   return (
     <Wrap>
@@ -69,7 +88,12 @@ const Details = () => {
               </InfoItem>
             </FlexWrap>
           </CoinInfo>
-          <CoinNews>News for: {symbol}</CoinNews>
+          <CoinNews>
+            <h2>Latest News for {symbol}</h2>
+            {newsArticles.Data.slice(0, 3).map((article) => (
+              <Article key={article.id} article={article} />
+            ))}
+          </CoinNews>
         </Grid>
       </Container>
     </Wrap>
@@ -155,6 +179,14 @@ const InfoItem = styled.div`
 
 const CoinNews = styled.div`
   background: var(--card-bg-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 3rem 1.5rem;
+
+  h2 {
+    margin-bottom: 2.5rem;
+    margin-left: 1.5rem;
+  }
 `;
 
 export default Details;

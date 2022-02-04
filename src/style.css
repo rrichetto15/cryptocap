@@ -49,3 +49,16 @@ input {
   font-size: inherit;
   font-family: inherit;
 }
+
+.spinner {
+  display: block;
+  margin: 10rem auto 0 auto;
+  font-size: 7.5rem;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

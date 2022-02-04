@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { ImSpinner10 } from 'react-icons/im';
 import { useFetch } from '../../hooks/useFetch';
 
 import Card from './Card';
@@ -19,7 +20,7 @@ const CardGrid = () => {
 
   return (
     <Wrap>
-      {isLoading && <h2 className="loading">Loading Coins...</h2>}
+      {isLoading && <ImSpinner10 className="spinner" />}
       {isError && (
         <h2 className="loading">
           Something went wrong, please try again soon.
