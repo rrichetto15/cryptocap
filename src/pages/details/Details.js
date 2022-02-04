@@ -38,6 +38,8 @@ const Details = () => {
     );
   }
 
+  console.log(newsArticles);
+
   const {
     IMAGEURL,
     PRICE,
@@ -46,8 +48,6 @@ const Details = () => {
     CHANGEPCT24HOUR,
     CIRCULATINGSUPPLY,
   } = coinData.DISPLAY[symbol.toUpperCase()].USD;
-
-  console.log(newsArticles);
 
   return (
     <Wrap>
@@ -68,7 +68,7 @@ const Details = () => {
                 <h3>Market Cap:</h3> <span>{MKTCAP}</span>
               </InfoItem>
               <InfoItem>
-                <h3>Circulating Supply:</h3> <span>{CIRCULATINGSUPPLY}</span>
+                <h3>Supply:</h3> <span>{CIRCULATINGSUPPLY}</span>
               </InfoItem>
               <InfoItem>
                 <h3>
@@ -104,7 +104,7 @@ const Wrap = styled.div``;
 
 const BackLink = styled(Link)`
   display: inline-block;
-  margin: 5rem 0 12.5rem 0;
+  margin: 2.5rem 0 10rem 0;
   padding: 1rem 2rem;
   font-weight: 600;
   border: 2px solid var(--input-outline-color);
@@ -113,6 +113,7 @@ const BackLink = styled(Link)`
   color: var(--text-white);
 
   &:hover {
+    color: #fff;
     background: var(--input-outline-color);
   }
 `;
@@ -121,6 +122,12 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   grid-gap: 5rem;
+
+  @media screen and (max-width: 1040px) {
+    grid-template-columns: 1fr;
+    max-width: 55rem;
+    margin: 0 auto;
+  }
 `;
 
 const CoinInfo = styled.div`
@@ -135,6 +142,7 @@ const CoinInfo = styled.div`
     top: -5rem;
     left: 5rem;
     height: 10rem;
+    border-radius: 4px;
   }
 
   h2 {
@@ -145,7 +153,7 @@ const CoinInfo = styled.div`
 const FlexWrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 `;
 
 const InfoItem = styled.div`
@@ -153,6 +161,11 @@ const InfoItem = styled.div`
   justify-content: space-between;
   align-items: baseline;
   gap: 2rem;
+
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
   h3 {
     font-size: 1.8rem;

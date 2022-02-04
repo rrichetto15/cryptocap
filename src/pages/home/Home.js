@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import Container from '../../components/Container';
-import FilterBar from './FilterBar';
 import CardGrid from './CardGrid';
 
 const Home = () => {
@@ -9,7 +8,6 @@ const Home = () => {
     <Wrap>
       <Container>
         <Flex>
-          <FilterBar />
           <CardGrid />
         </Flex>
       </Container>
@@ -19,6 +17,11 @@ const Home = () => {
 
 const Wrap = styled.div`
   padding: 5rem;
+
+  h1 {
+    text-align: center;
+    font-size: 4.2rem;
+  }
 `;
 
 const Flex = styled.div`

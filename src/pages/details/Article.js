@@ -45,6 +45,16 @@ const ExternalLink = styled.a`
   p {
     font-size: 1.4rem;
   }
+
+  @media screen and (max-width: 550px) {
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+
+    img {
+      height: 4rem;
+    }
+  }
 `;
 
 export default Article;

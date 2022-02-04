@@ -7,7 +7,7 @@ import Card from './Card';
 
 const CardGrid = () => {
   const { coinData, isLoading, isError } = useFetch(
-    '/top/mktcapfull?limit=51&tsym=USD'
+    '/top/mktcapfull?limit=45&tsym=USD'
   );
   const [validCoinData, setValidCoinData] = useState([]);
 
@@ -16,7 +16,7 @@ const CardGrid = () => {
       // Only use coins that have DISPLAY object (which holds USD price)
       setValidCoinData(coinData.Data.filter((coin) => coin.DISPLAY || false));
     }
-  }, [isLoading]);
+  }, [isLoading, coinData.Data]);
 
   return (
     <Wrap>
@@ -37,7 +37,7 @@ const CardGrid = () => {
 
 const Wrap = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-gap: 4rem;
 
   .loading {
